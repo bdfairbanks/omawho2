@@ -1,0 +1,30 @@
+.choiceBox{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  line-height: 20px;
+  justify-content: space-between;
+  list-style-type: none;
+  cursor: pointer;
+
+}
+.mainPageProfiles{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.profilePic{
+  width: 300px;
+}
+.Web{
+  background-color: red;
+}
+.Sales{
+  background-color: red;
+}
+.Music{
+  background-color: red;
+}
+.Non-Profit{
+  background-color: green;
+}
