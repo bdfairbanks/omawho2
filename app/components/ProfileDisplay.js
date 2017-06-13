@@ -15,64 +15,46 @@ var Link = require("react-router-dom").Link
 // is then used to decide the rendering order of the profiles that appear on screen.
 
 function BuildGrid (props) {
-   if (props.specialty == "All") {
-
+    var profileHolder = [];
     var numHolder = [];
-    var number = 0;
-    var length = Object.keys(props.profiles).length;
-    for (var i=0; i< length;){
-      var num = random.integer(0, length-1)
-      if (numHolder.includes(num) == false){
-          numHolder.push(num);
-          i++;
+    if (props.specialty != "All"){
+      for (var i=0; i<Object.keys(props.profiles).length; i++){
+        if (props.profiles[i][3] == props.specialty){
+          profileHolder.push(props.profiles[i])
+        }
       }
+      profileHolder.map(function (x){
+        var num = random.integer(0, Object.keys(profileHolder).length-1)
+        if (numHolder.includes(num) == false){
+          numHolder.push(num)
+        } 
+      })
     }
-    return(
+    else{
+      for (var i=0; i<Object.keys(props.profiles).length; i++){
+        profileHolder.push(props.profiles[i])
+      }
+       profileHolder.map(function (x){
+        var num = random.integer(0, Object.keys(profileHolder).length-1)
+        if (numHolder.includes(num) == false){
+          numHolder.push(num)
+        }})
+    }
+      return(
       <div className="mainPageProfiles">
         {numHolder.map(function (x){
-          var fullName = props.profiles[x][1] + props.profiles[x][2]
+          var fullName = profileHolder[x][1] + profileHolder[x][2]
           return( 
-            <div key={props.profiles[x][1]} className={props.profiles[x][3]}>          
-              <Link className="link" to={{ pathname: '/profile/'+fullName, query: { query: props.profiles[x] } }}>
-                <img src={props.profiles[x][0]} className="profilePic"/>
-                <h1>{props.profiles[x][1]} {props.profiles[x][2]}</h1>
-                <h1>{props.profiles[x][3]}</h1>
+            <div key={profileHolder[x][1]} className={profileHolder[x][3]}>          
+              <Link className="link" to={{ pathname: '/profile/'+fullName, query: { query: profileHolder[x] } }}>
+                <img src={profileHolder[x][0]} className="profilePic"/>
+                <h1>{profileHolder[x][1]} {profileHolder[x][2]}</h1>
+                <h1>{profileHolder[x][3]}</h1>
               </Link>
             </div>
           )})}
      </div>
     )  
-  }
-  else{
-    var profileHolder = [];
-    var numHolder = [];
-    for (i=0; i<Object.keys(props.profiles).length; i++){
-      if (props.profiles[i][3] == props.specialty){
-        profileHolder.push(props.profiles[i])
-      }
-    }
-    profileHolder.map(function (x){
-      var num = random.integer(0, Object.keys(profileHolder).length-1)
-      if (numHolder.includes(num) == false){
-        numHolder.push(num)
-      } 
-    })
-    return(
-       <div className="mainPageProfiles">
-        {numHolder.map(function (x){
-          var fullName = [profileHolder][x][1] + profileHolder[x][2]
-          return(
-          <div key={profileHolder[x][1]} className={profileHolder[x][3]}>
-          <Link className="link" to={{ pathname: '/profile/'+fullName, query: { query: profileHolder[x] } }}>
-              <img src={profileHolder[x][0]} className="profilePic"/>
-              <h1>{profileHolder[x][1]} {profileHolder[x][2]}</h1>
-              <h1>{profileHolder[x][3]}</h1>
-          </Link>
-          </div>
-          )})}
-     </div>
-    )
-  }
 } 
 
 // This function generates a list of specialites to be displayed on the screen.
