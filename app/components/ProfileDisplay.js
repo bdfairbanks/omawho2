@@ -64,11 +64,11 @@ function ChooseSpecialty (props){
   return(
     <ul className='choiceBox'>
       {specialties.map(function (spesh) {
-        return(
-          <li key={spesh}
-          onClick={props.onSelect.bind(null, spesh)}
-            style={spesh === props.specialty ? {color: '#d0021b'} : null}>
-            {spesh}
+        return( 
+          <li key={spesh}>
+            <Link className="link" to={{ pathname: '/specialties/'+spesh, query: { profiles: props.profiles  } }} >
+              {spesh}
+            </Link>
           </li>
         )
       })}
@@ -112,8 +112,9 @@ class ProfileDisplay extends React.Component{
   render(){
     return (
       <div>
-      <ChooseSpecialty onSelect={this.pickSpecialty}
-        specialty={this.state.specialty}/>
+        <ChooseSpecialty onSelect={this.pickSpecialty}
+          specialty={this.state.specialty}
+          profiles ={this.state.profiles} />
         <BuildGrid profiles={this.state.profiles} specialty={this.state.specialty} />
       </div>
       )
