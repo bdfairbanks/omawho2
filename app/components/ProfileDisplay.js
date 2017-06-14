@@ -4,25 +4,9 @@ var PropTypes = require('prop-types');
 var random =require("random-js")();
 var Link = require("react-router-dom").Link
 var BuildGrid = require("./BuildGrid.js")
+var ChooseSpecialty = require('./ChooseSpecialty')
 
-// This function generates a list of specialites to be displayed on the screen.
-// When clicked each specialty will turn red and launch a function. 
-function ChooseSpecialty (props){
- var specialties = ["All", "Web and Software", "Graphic Design", "Architecture and Interior Design", "Photography", "Music Film and Art", "Fashion", "Writing", "Venture Capital", "Community Connector", "Non-Profit", "Sales and Marketing"]
-  return(
-    <ul className='choiceBox'>
-      {specialties.map(function (spesh) {
-        return(
-          <li key={spesh}
-          onClick={props.onSelect.bind(null, spesh)}
-            style={spesh === props.specialty ? {color: '#d0021b'} : null}>
-            {spesh}
-          </li>
-        )
-      })}
-    </ul>
-  )
-}
+
 // This component is the main element of this page.  It containes the state (profiles, 
 // specialty) that allows information to be passed the the above functions.  It
 // includes pickSpecialty, the chunck of the component that allows specific specialties
