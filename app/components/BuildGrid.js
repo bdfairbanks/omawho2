@@ -29,12 +29,13 @@ function BuildGrid (props) {
       profileHolder.push(props.profiles[i])
     }
   }
-  profileHolder.map(function (x){
+  for (var i=0; i<profileHolder.length;){
     var num = random.integer(0, Object.keys(profileHolder).length-1)
     if (numHolder.includes(num) == false){
-      numHolder.push(num)
+      numHolder.push(num);
+      i++
     }
-  })
+  }
   return(
     <div className="mainPageProfiles">
       {numHolder.map(function (x){
