@@ -1,5 +1,5 @@
 var React = require('react');
-var ProfileDisplay = require('./ProfileDisplay');
+var Index = require('./Index');
 var ReactRouter = require('react-router-dom');
 var Router = ReactRouter.BrowserRouter;
 var Route = ReactRouter.Route; 
@@ -12,7 +12,7 @@ class App extends React.Component {
     return(
       <Router> 
         <div>
-          <Route exact path='/' component={ProfileDisplay} />
+          <Route exact path='/' component={Index} />
           <Route path='/profile/:person' component={Profile} />
           <Route path='/edit' component={Edit} />
           <Route path='/sign' component={Signs} />
