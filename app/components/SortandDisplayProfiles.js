@@ -3,6 +3,7 @@ require('../index.css');
 var PropTypes = require('prop-types');
 var random =require("random-js")();
 var Link = require("react-router-dom").Link;
+var ProfilesDatabase = require('./ProfilesDatabase.js')
 
 // Takes the props.profiles,(an object containing arrays of objects needed
 // to createprofiles) and does one of two things with them. If props.specialty 

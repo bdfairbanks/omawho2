@@ -3,9 +3,9 @@ require('../index.css');
 var PropTypes = require('prop-types');
 var random =require("random-js")();
 var Link = require("react-router-dom").Link
-var SortandDisplayProfiles = require("./SortandDisplayProfiles.js")
-var ChangeSpecialty = require('./ChangeSpecialty')
-
+var SortandDisplayProfiles = require("./SortandDisplayProfiles.js");
+var ChangeSpecialty = require('./ChangeSpecialty');
+var ProfilesDatabase = require('./ProfilesDatabase.js');
 
 // This component is the main element of this page.  It containes the state (profiles, 
 // specialty) that allows information to be passed the the above functions.  It
@@ -16,16 +16,17 @@ class HomePage extends React.Component{
   constructor(props) {
     super();
     this.state= {
-      profiles: {
-        img:["/app/profiles/profile.jpg", "/app/profiles/profile2.jpg", "/app/profiles/profile3.jpg", "/app/profiles/profile4.jpg", "/app/profiles/profile5.jpg", "/app/profiles/profile6.jpg", "/app/profiles/profile7.jpg", "/app/profiles/profile8.jpg", "/app/profiles/profile9.jpg", "/app/profiles/profile10.jpg", "/app/profiles/profile11.jpg",],
-        name:[ "Ben Fairbanks", "Sumeet Jain", "Suzy Creamcheese", "John Debut", "Bob Silversteen", "Thad Prefect", "Jenny Allimony", "Horseface John", "Tret Stevenson", "Sherry Black", "Aluise LaMont"],
-        specialty:["Web and Software", "Graphic Design", "Architecture and Interior Design","Photography", "Music Film and Art", "Fashion", "Writing", "Venture Capital", "Community Connector", "Non-Profit", "Sales and Marketing"],
-      },
+      profiles: null,
       currentSpecialty: "All",
     };
     this.pickSpecialty = this.pickSpecialty.bind(this);
   }
-
+    componentDidMount () {
+    this.setState(function () {
+      return{
+        profiles: ProfilesDatabase.returnProfiles()
+      };
+    })}
   pickSpecialty(spesh) {
     this.setState(function () {
       return{
@@ -36,10 +37,13 @@ class HomePage extends React.Component{
   render(){
     return (
       <div>
-      <ChangeSpecialty onSelect={this.pickSpecialty}
+        <ChangeSpecialty onSelect={this.pickSpecialty}
         currentSpecialty={this.state.currentSpecialty}/>
-        <SortandDisplayProfiles profiles={this.state.profiles} currentSpecialty={this.state.currentSpecialty} />
+        {!this.state.profiles
+          ?<p>Loading...</p>
+          :<SortandDisplayProfiles profiles={this.state.profiles} currentSpecialty={this.state.currentSpecialty} />}
       </div>
+
       )
   }
 }
