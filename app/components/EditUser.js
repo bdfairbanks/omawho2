@@ -3,6 +3,7 @@ var Link = require("react-router-dom").Link;
 import Dropzone from 'react-dropzone';
 var Dropbox = require('./Dropbox.js');
 var SpecialtiesDropdown = require('./SpecialtiesDropdown')
+var NavBar = require('./NavBar.js')
 
 class EditUser extends React.Component{
  constructor(props) {
@@ -13,7 +14,8 @@ class EditUser extends React.Component{
   render(){
     return(
       <div className="EditBox">
-      <Dropbox />
+        <NavBar />
+        <Dropbox />
         <h1> Edit Your OmahaWho Account</h1>
         <form className="editingForm">
           <label> First Name:<input type="text" />

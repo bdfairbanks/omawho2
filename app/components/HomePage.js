@@ -6,6 +6,7 @@ var Link = require("react-router-dom").Link
 var SortandDisplayProfiles = require("./SortandDisplayProfiles.js");
 var ChangeSpecialty = require('./ChangeSpecialty');
 var ProfilesDatabase = require('./ProfilesDatabase.js');
+var NavBar = require('./NavBar.js')
 
 // This component is the main element of this page.  It containes the state (profiles, 
 // specialty) that allows information to be passed the the above functions.  It
@@ -39,6 +40,7 @@ class HomePage extends React.Component{
       <div>
         <ChangeSpecialty onSelect={this.pickSpecialty}
         currentSpecialty={this.state.currentSpecialty}/>
+        <NavBar />
         {!this.state.profiles
           ?<p>Loading...</p>
           :<SortandDisplayProfiles profiles={this.state.profiles} currentSpecialty={this.state.currentSpecialty} />}

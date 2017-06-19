@@ -1,6 +1,7 @@
 var React = require('react');
 var Link = require("react-router-dom").Link;
 var ProfilesDatabase = require('./ProfilesDatabase.js');
+var NavBar = require('./NavBar.js')
 
 function ReturnIndividualDisplay (props){
   if (props.params.query == null){
@@ -40,7 +41,8 @@ class DisplayIndividualProfile extends React.Component{
   render(){
     return(
       <div>
-      {!this.state.profiles
+        <NavBar />
+        {!this.state.profiles
           ?<p>Loading...</p>
           :<ReturnIndividualDisplay params={this.props.location} profiles={this.state.profiles} />}
       </div>

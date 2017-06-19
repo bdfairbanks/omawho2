@@ -1,10 +1,12 @@
 var React = require('react');
 var Link = require("react-router-dom").Link;
+var NavBar = require('./NavBar.js')
 
 class SignInOrUp extends React.Component{
   render(){
     return(
       <div className="SignInOrUp">
+      <NavBar />
         <form className="SignIn">
           <h1>Sign In to Your Account</h1>
             <label>
