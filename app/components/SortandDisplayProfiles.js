@@ -17,20 +17,21 @@ var ProfilesDatabase = require('./ProfilesDatabase.js')
 function SortandDisplayProfiles (props) {
   var profileHoldingObject = {img: [], name: [], specialty: []};
   var numberHoldingArray = [];
+  debugger
   if (props.currentSpecialty != "All"){
-    for (var i=0; i<props.profiles.name.length; i++){
-      if (props.profiles.specialty[i] == props.currentSpecialty){
-        profileHoldingObject.img.push(props.profiles.img[i])
-        profileHoldingObject.name.push(props.profiles.name[i])
-        profileHoldingObject.specialty.push(props.profiles.specialty[i])
+    for (var i=0; i<Object.keys(props.profiles).length; i++){
+      if (props.profiles[i][2] == props.currentSpecialty){
+        profileHoldingObject.img.push(props.profiles[i][0])
+        profileHoldingObject.name.push(props.profiles[i][1])
+        profileHoldingObject.specialty.push(props.profiles[i][2])
       }
     }
   }
   else{
-    for (var i=0; i<props.profiles.name.length; i++){
-        profileHoldingObject.img.push(props.profiles.img[i])
-        profileHoldingObject.name.push(props.profiles.name[i])
-        profileHoldingObject.specialty.push(props.profiles.specialty[i])
+    for (var i=0; i<Object.keys(props.profiles).length; i++){
+        profileHoldingObject.img.push(props.profiles[i][0])
+        profileHoldingObject.name.push(props.profiles[i][1])
+        profileHoldingObject.specialty.push(props.profiles[i][2])
     }
   }
   for (var i=0; i<profileHoldingObject.name.length;){
