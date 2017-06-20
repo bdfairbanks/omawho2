@@ -1,7 +1,6 @@
 var React = require('react');
 require('../index.css');
 var PropTypes = require('prop-types');
-var random =require("random-js")();
 var Link = require("react-router-dom").Link
 var SortandDisplayProfiles = require("./SortandDisplayProfiles.js");
 var ChangeSpecialty = require('./ChangeSpecialty');

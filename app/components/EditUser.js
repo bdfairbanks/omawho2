@@ -1,6 +1,4 @@
 var React = require('react');
-var Link = require("react-router-dom").Link;
-import Dropzone from 'react-dropzone';
 var Dropbox = require('./Dropbox.js');
 var SpecialtiesDropdown = require('./SpecialtiesDropdown')
 var NavBar = require('./NavBar.js')
