@@ -2,11 +2,13 @@ module.exports = {
    prepareIndividualProfile: function (props) {
    if (props.params.query == null){
       for (var i=0; i<Object.keys(props.profiles).length; i++){
-        if (props.profiles[i][1].replace(/\s+/g, '') == props.params){
+        debugger
+        if (props.profiles[i].Name == props.params){
+          debugger
           var individualProfileHoldingObject = 
-          { img: props.profiles[i][0], 
-            name: props.profiles[i][1], 
-            specialty: props.profiles[i][2]}
+          { img: props.profiles[i].Image, 
+            name: props.profiles[i].Name, 
+            specialty: props.profiles[i].Specialty}
         }
       }
   }
