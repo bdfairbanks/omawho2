@@ -2,9 +2,7 @@ module.exports = {
    prepareIndividualProfile: function (props) {
    if (props.params.query == null){
       for (var i=0; i<Object.keys(props.profiles).length; i++){
-        debugger
-        if (props.profiles[i].Name == props.params){
-          debugger
+        if (props.profiles[i].Name.replace(/ /g, '').toLowerCase() == props.params){
           var individualProfileHoldingObject = 
           { img: props.profiles[i].Image, 
             name: props.profiles[i].Name, 
