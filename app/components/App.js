@@ -6,6 +6,8 @@ var Route = ReactRouter.Route;
 var DisplayIndividualProfile = require('./DisplayIndividualProfile')
 var EditUser = require('./EditUser.js')
 var SignUp = require('./SignInOrUp.js')
+var NotFoundRoute = Router.NotFoundRoute;
+var PageNotFound = require('./PageNotFound.js') 
 
 class App extends React.Component {
   render(){
@@ -16,6 +18,7 @@ class App extends React.Component {
           <Route path='/profile/:person' component={DisplayIndividualProfile} />
           <Route path='/edit' component={EditUser} />
           <Route path='/sign' component={SignUp} />
+          <Route path='*' component={PageNotFound} />
         </div>
       </Router>
       )
