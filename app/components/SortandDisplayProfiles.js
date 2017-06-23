@@ -15,7 +15,7 @@ var ProfilesDatabase = require('./ProfilesDatabase.js')
 // is then used to decide the rendering order of the profiles that appear on screen.
 
 function SortandDisplayProfiles (props) {
-  var profileHoldingObject = {img: [], name: [], specialty: []};
+  var profileHoldingObject = {img: [], name: [], specialty: [], slug: []};
   var numberHoldingArray = [];
   if (props.currentSpecialty != "All"){
     for (var i=0; i<Object.keys(props.profiles).length; i++){
@@ -23,6 +23,7 @@ function SortandDisplayProfiles (props) {
         profileHoldingObject.img.push(props.profiles[i].Image)
         profileHoldingObject.name.push(props.profiles[i].Name)
         profileHoldingObject.specialty.push(props.profiles[i].Specialty)
+        profileHoldingObject.slug.push(props.profiles[i].Slug)
       }
     }
   }
@@ -31,6 +32,7 @@ function SortandDisplayProfiles (props) {
         profileHoldingObject.img.push(props.profiles[i].Image)
         profileHoldingObject.name.push(props.profiles[i].Name)
         profileHoldingObject.specialty.push(props.profiles[i].Specialty)
+        profileHoldingObject.slug.push(props.profiles[i].Slug)
     }
   }
   for (var i=0; i<profileHoldingObject.name.length;){
@@ -45,7 +47,11 @@ function SortandDisplayProfiles (props) {
       {numberHoldingArray.map(function (x){
         return( 
           <div key={profileHoldingObject.name[x]} className={profileHoldingObject.specialty[x]}>          
-            <Link className="link" to={{ pathname: '/profile/'+profileHoldingObject.name[x].replace(/\s+/g, ''), query: { img: profileHoldingObject.img[x], name: profileHoldingObject.name[x], specialty: profileHoldingObject.specialty[x] } }}>
+            <Link className="link" to={{ pathname: '/profile/'+profileHoldingObject.slug[x], 
+            query: { img: profileHoldingObject.img[x], 
+                     name: profileHoldingObject.name[x],
+                     specialty: profileHoldingObject.specialty[x],
+                     slug: profileHoldingObject.slug[x] } }}>
               <img src={profileHoldingObject.img[x]} className="profilePic"/>
               <h1>{profileHoldingObject.name[x]}</h1>
               <h1>{profileHoldingObject.specialty[x]}</h1>
